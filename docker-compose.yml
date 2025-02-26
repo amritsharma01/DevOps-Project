@@ -5,7 +5,7 @@ services:
     build:
       context: ./frontend # Assuming the React app is in the 'frontend' directory
     ports:
-      - "5173:5173" # Expose port 3000 for the frontend
+      - "3000:80" # Expose port 3000 for the frontend
     depends_on:
       - backend # Ensure the backend service is up before the frontend
 
