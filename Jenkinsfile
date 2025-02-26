@@ -49,17 +49,6 @@ pipeline {
             }
         }
 
-        stage('Push Docker Images') {
-            steps {
-                script {
-                    sh 'docker tag major_project_devops_backend:latest amritsharma01/backend:latest'
-                    sh 'docker tag major_project_devops_frontend:latest amritsharma01/frontend:latest'
-                    sh 'docker push amritsharma01/backend:latest'
-                    sh 'docker push amritsharma01/frontend:latest'
-                }
-            }
-        }
-
         stage('Cleanup') {
             steps {
                 script {
