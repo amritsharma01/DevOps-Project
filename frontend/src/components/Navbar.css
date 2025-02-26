@@ -1,0 +1,48 @@
+.nav-logo {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+  
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #373B44,
+        #4286f4);
+   
+    color: white;
+    font-weight: bold;
+    border-bottom: 1px solid white;
+   
+    height: 30px;
+   
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+   
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    transition: color 0.3s ease-in-out;
+   
+}
+
+.nav-links a:hover {
+    color: #333;
+  
+    text-decoration: underline;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}

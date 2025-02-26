@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend # Assuming the React app is in the 'frontend' directory
+    ports:
+      - "5173:5173" # Expose port 3000 for the frontend
+    depends_on:
+      - backend # Ensure the backend service is up before the frontend
+
+  backend:
+    build:
+      context: ./backend # Assuming the FastAPI app is in the 'backend' directory
+    ports:
+      - "8000:8000" # Expose port 8000 for the backend
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=3212
+      - MYSQL_DATABASE=major_prj_db
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - db # Ensure the DB service is up before the backend
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 3212
+      MYSQL_DATABASE: major_prj_db
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3307:3306" # Expose MySQL on port 3306
+
+volumes:
+  mysql_data:
