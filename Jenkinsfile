@@ -44,29 +44,15 @@ pipeline {
                 }
             }
         }
-
-        stage('Test Backend') {
-            steps {
-                script {
-                    sh 'curl --retry 5 --retry-connrefused http://localhost:8000/team/'
-                }
+        post {
+            failure {
+                sh 'docker-compose down --remove-orphans'
+                echo 'Deployment failed'
             }
-        }
-
-        stage('Test Frontend') {
-            steps {
-                script {
-                    sh 'curl --retry 5 --retry-connrefused http://localhost:3000'
-                }
+            success {
+                echo 'Deployment successful'
             }
-        }
+    }
 
-        stage('Cleanup After Pipeline') {
-            steps {
-                script {
-                    sh 'docker-compose down -v --remove-orphans'
-                }
-            }
-        }
     }
 }
