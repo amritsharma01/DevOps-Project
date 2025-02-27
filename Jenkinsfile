@@ -17,6 +17,18 @@ pipeline {
             }
         }
 
+        stage('Cleanup Previous Containers') {
+            steps {
+                script {
+                    sh '''
+                    docker-compose down -v || true
+                    docker rm -f $(docker ps -aq) || true
+                    docker volume prune -f || true
+                    '''
+                }
+            }
+        }
+
         stage('Build Docker Images') {
             steps {
                 script {
@@ -28,7 +40,7 @@ pipeline {
         stage('Run Containers') {
             steps {
                 script {
-                    sh 'docker-compose up -d'
+                    sh 'docker-compose up -d --remove-orphans'
                 }
             }
         }
@@ -49,10 +61,10 @@ pipeline {
             }
         }
 
-        stage('Cleanup') {
+        stage('Cleanup After Pipeline') {
             steps {
                 script {
-                    sh 'docker-compose down'
+                    sh 'docker-compose down -v --remove-orphans'
                 }
             }
         }
