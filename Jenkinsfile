@@ -44,7 +44,8 @@ pipeline {
                 }
             }
         }
-        post {
+    }
+    post {
             failure {
                 sh 'docker-compose down --remove-orphans'
                 echo 'Deployment failed'
@@ -52,7 +53,5 @@ pipeline {
             success {
                 echo 'Deployment successful'
             }
-    }
-
-    }
+        }
 }
