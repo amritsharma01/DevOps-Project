@@ -8,3 +8,6 @@ DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://root:3212@db/major_prj
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
+
+
+

@@ -8,12 +8,13 @@ WORKDIR /app
 COPY . /app
 
 # Install dependencies
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
+# Install wait-for-it
 RUN apt-get update && apt-get install -y wait-for-it
 
 # Expose port
 EXPOSE 8000
 
-# Run the FastAPI app
-CMD ["wait-for-it", "db:3306", "--","uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run the FastAPI app and initialize the database
+CMD ["wait-for-it", "db:3306", "--", "sh", "-c", "python init_db.py && uvicorn main:app --host 0.0.0.0 --port 8000"]
