@@ -11,7 +11,7 @@ services:
 
   backend:
     build:
-      context: ./backend # Assuming the FastAPI app is in the 'backend' directory
+      context: ./backend 
     ports:
       - "8000:8000" # Expose port 8000 for the backend
     environment:
