@@ -7,8 +7,7 @@ This project implements a **multi-container application** with a **CI/CD pipelin
 - **Frontend:** React (Vite)  
 - **Database:** MySQL  
 - **Containerization:** Docker Compose  
-- **CI/CD:** Jenkins  
-- **Automation:** Ansible  
+- **CI/CD:** Jenkins   
 - **Monitoring & Logging:** Prometheus, Grafana  
 
 ---
